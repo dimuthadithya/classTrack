@@ -2,8 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Manage Courses - ClassTrack</title>
+    <title>Manage Classes - ClassTrack</title>
     <link rel="stylesheet" href="../../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
@@ -17,110 +21,45 @@
 
     <main class="container" style="padding-top: 40px; padding-bottom: 50px">
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px">
-        <!-- Course List & Enrollment -->
+        <!-- Course List -->
         <div>
-          <h2>Your Courses</h2>
+          <h2>Your Classes / Grades</h2>
           <div style="display: grid; gap: 20px; margin-top: 20px">
-            <!-- Dummy Course 1 -->
+            <!-- Dummy Class 1 -->
             <div class="card">
-              <div style="display: flex; justify-content: space-between">
-                <h3>Introduction to PHP</h3>
-                <span style="font-weight: bold; color: var(--success)"
-                  >$49.99</span
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <h3>Grade 10 Science</h3>
+                <a href="view_course.html" class="btn btn-primary"
+                  >Manage Months</a
                 >
               </div>
               <p style="color: var(--text-muted); margin: 10px 0">
-                Learn the basics of PHP programming language.
+                Physics, Chemistry, and Biology fundamentals.
               </p>
-
-              <!-- Enrollment Form for this Course -->
-              <div
-                style="
-                  margin-top: 15px;
-                  padding-top: 15px;
-                  border-top: 1px solid #e2e8f0;
-                "
-              >
-                <h4>Enroll Student</h4>
-                <form style="display: flex; gap: 10px; margin-top: 10px">
-                  <select
-                    name="student_id"
-                    class="form-control"
-                    style="flex: 2"
-                  >
-                    <option value="">Select Student</option>
-                    <option value="1">John Doe (john.doe@example.com)</option>
-                    <option value="2">
-                      Jane Smith (jane.smith@example.com)
-                    </option>
-                  </select>
-                  <select
-                    name="payment_status"
-                    class="form-control"
-                    style="flex: 1"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="paid">Paid</option>
-                  </select>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    style="padding: 0.5rem 1rem"
-                  >
-                    Enroll
-                  </button>
-                </form>
-              </div>
             </div>
-            <!-- Dummy Course 2 -->
+            <!-- Dummy Class 2 -->
             <div class="card">
-              <div style="display: flex; justify-content: space-between">
-                <h3>Web Development Bootcamp</h3>
-                <span style="font-weight: bold; color: var(--success)"
-                  >$99.99</span
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <h3>Grade 11 Mathematics</h3>
+                <a href="view_course.html" class="btn btn-primary"
+                  >Manage Months</a
                 >
               </div>
               <p style="color: var(--text-muted); margin: 10px 0">
-                Complete guide to HTML, CSS, and JS.
+                Algebra, Geometry, and Calculus prep.
               </p>
-
-              <div
-                style="
-                  margin-top: 15px;
-                  padding-top: 15px;
-                  border-top: 1px solid #e2e8f0;
-                "
-              >
-                <h4>Enroll Student</h4>
-                <form style="display: flex; gap: 10px; margin-top: 10px">
-                  <select
-                    name="student_id"
-                    class="form-control"
-                    style="flex: 2"
-                  >
-                    <option value="">Select Student</option>
-                    <option value="1">John Doe (john.doe@example.com)</option>
-                    <option value="2">
-                      Jane Smith (jane.smith@example.com)
-                    </option>
-                  </select>
-                  <select
-                    name="payment_status"
-                    class="form-control"
-                    style="flex: 1"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="paid">Paid</option>
-                  </select>
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    style="padding: 0.5rem 1rem"
-                  >
-                    Enroll
-                  </button>
-                </form>
-              </div>
             </div>
           </div>
         </div>
@@ -128,11 +67,17 @@
         <!-- Create Course Form -->
         <div>
           <div class="card" style="position: sticky; top: 100px">
-            <h3>Create New Course</h3>
+            <h3>Create New Class</h3>
             <form style="margin-top: 15px">
               <div class="form-group">
-                <label class="form-label">Course Title</label>
-                <input type="text" name="title" class="form-control" required />
+                <label class="form-label">Class Name</label>
+                <input
+                  type="text"
+                  name="title"
+                  class="form-control"
+                  placeholder="e.g. Grade 10 English"
+                  required
+                />
               </div>
               <div class="form-group">
                 <label class="form-label">Description</label>
@@ -142,21 +87,8 @@
                   rows="3"
                 ></textarea>
               </div>
-              <div class="form-group">
-                <label class="form-label">Live Class Link (e.g., Zoom)</label>
-                <input type="text" name="live_link" class="form-control" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">Price</label>
-                <input
-                  type="number"
-                  name="price"
-                  class="form-control"
-                  value="0.00"
-                />
-              </div>
               <button type="button" class="btn btn-primary" style="width: 100%">
-                Create Course
+                Create Class
               </button>
             </form>
           </div>

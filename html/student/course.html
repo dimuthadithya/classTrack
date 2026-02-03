@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Course: Introduction to PHP - ClassTrack</title>
+    <title>Grade 10 Science - ClassTrack</title>
     <link rel="stylesheet" href="../../css/style.css" />
     <link
       rel="stylesheet"
@@ -14,106 +14,115 @@
       <div class="container nav-flex">
         <a href="dashboard.html" class="logo">ClassTrack Student</a>
         <nav>
-          <a href="dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+          <a href="dashboard.html" class="btn btn-outline">Back to Classes</a>
         </nav>
       </div>
     </header>
 
     <main class="container" style="padding-top: 40px">
-      <div class="card mb-4" style="border-left: 5px solid var(--primary)">
-        <h1>Introduction to PHP</h1>
-        <p style="margin-top: 10px; color: var(--text-muted)">
-          Learn the basics of PHP programming language including variables,
-          loops, functions, and database connectivity.
-        </p>
+      <h1 class="mb-4">Grade 10 Science: Study Modules</h1>
 
-        <div style="margin-top: 20px">
-          <a href="#" class="btn btn-primary" style="background-color: #ef4444">
-            <i class="fas fa-video"></i> Join Live Class
-          </a>
-        </div>
-      </div>
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 20px;
+        "
+      >
+        <!-- Dummy Month 1 (Paid) -->
+        <div class="card" style="border: 1px solid var(--success)">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+            "
+          >
+            <div>
+              <h3>January</h3>
+              <span
+                style="
+                  display: inline-block;
+                  background: #e2e8f0;
+                  padding: 2px 8px;
+                  border-radius: 4px;
+                  font-size: 0.8rem;
+                  margin-top: 5px;
+                "
+              >
+                2026
+              </span>
+            </div>
+            <i
+              class="fas fa-check-circle"
+              style="color: var(--success); font-size: 1.5rem"
+            ></i>
+          </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px">
-        <!-- Recordings -->
-        <div>
-          <h2 class="mb-4">Class Recordings</h2>
-          <div class="card">
-            <div
+          <p style="margin: 15px 0; font-weight: bold">Fee: $10.00</p>
+
+          <div style="margin-top: 10px">
+            <a
+              href="month.html"
+              class="btn btn-primary"
               style="
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
+                width: 100%;
+                text-align: center;
+                background: var(--success);
               "
             >
-              <span
-                ><i
-                  class="fas fa-play-circle"
-                  style="color: var(--danger); margin-right: 10px"
-                ></i
-                >Week 1: Introduction</span
-              >
-              <a href="#" style="color: var(--primary)">Watch</a>
-            </div>
-            <div
-              style="
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span
-                ><i
-                  class="fas fa-play-circle"
-                  style="color: var(--danger); margin-right: 10px"
-                ></i
-                >Week 2: Variables & Types</span
-              >
-              <a href="#" style="color: var(--primary)">Watch</a>
-            </div>
+              Access Content
+            </a>
           </div>
         </div>
 
-        <!-- Documents -->
-        <div>
-          <h2 class="mb-4">Study Materials</h2>
-          <div class="card">
-            <div
+        <!-- Dummy Month 2 (Locked) -->
+        <div class="card" style="border: 1px solid #e2e8f0">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+            "
+          >
+            <div>
+              <h3>February</h3>
+              <span
+                style="
+                  display: inline-block;
+                  background: #e2e8f0;
+                  padding: 2px 8px;
+                  border-radius: 4px;
+                  font-size: 0.8rem;
+                  margin-top: 5px;
+                "
+              >
+                2026
+              </span>
+            </div>
+            <i
+              class="fas fa-lock"
+              style="color: var(--text-muted); font-size: 1.5rem"
+            ></i>
+          </div>
+
+          <p style="margin: 15px 0; font-weight: bold">Fee: $10.00</p>
+
+          <div style="margin-top: 10px">
+            <button
+              class="btn"
               style="
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
+                width: 100%;
+                background: #fee2e2;
+                color: #b91c1c;
+                cursor: pointer;
+              "
+              onclick="
+                alert('Please contact admin to make payment for this month.')
               "
             >
-              <span
-                ><i
-                  class="fas fa-file-alt"
-                  style="color: var(--primary); margin-right: 10px"
-                ></i
-                >Course Syllabus</span
-              >
-              <a href="#" style="color: var(--primary)">Download</a>
-            </div>
-            <div
-              style="
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span
-                ><i
-                  class="fas fa-file-alt"
-                  style="color: var(--primary); margin-right: 10px"
-                ></i
-                >Week 1 Slides</span
-              >
-              <a href="#" style="color: var(--primary)">Download</a>
-            </div>
+              Pay to Unlock
+            </button>
           </div>
         </div>
       </div>
