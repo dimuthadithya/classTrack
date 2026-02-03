@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manage Users - ClassTrack</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container nav-flex">
+        <a href="dashboard.html" class="logo">ClassTrack Admin</a>
+        <nav>
+          <a href="dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px">
+      <div style="display: flex; gap: 40px">
+        <!-- User List -->
+        <div style="flex: 2">
+          <h2>All Users</h2>
+          <div
+            class="card"
+            style="margin-top: 20px; padding: 0; overflow: hidden"
+          >
+            <table style="width: 100%; border-collapse: collapse">
+              <thead style="background: #f1f5f9">
+                <tr>
+                  <th style="padding: 15px; text-align: left">Name</th>
+                  <th style="padding: 15px; text-align: left">Email</th>
+                  <th style="padding: 15px; text-align: left">Role</th>
+                  <th style="padding: 15px; text-align: left">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dummy Data Row 1 -->
+                <tr style="border-bottom: 1px solid #e2e8f0">
+                  <td style="padding: 15px">Super Admin</td>
+                  <td style="padding: 15px">admin@classtrack.com</td>
+                  <td style="padding: 15px">
+                    <span
+                      style="
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        background: #dbeafe;
+                        color: #1e40af;
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                      >Admin</span
+                    >
+                  </td>
+                  <td style="padding: 15px">
+                    <button disabled style="opacity: 0.5">Edit</button>
+                  </td>
+                </tr>
+                <!-- Dummy Data Row 2 -->
+                <tr style="border-bottom: 1px solid #e2e8f0">
+                  <td style="padding: 15px">John Doe</td>
+                  <td style="padding: 15px">john.doe@example.com</td>
+                  <td style="padding: 15px">
+                    <span
+                      style="
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        background: #f0fdf4;
+                        color: #15803d;
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                      >Student</span
+                    >
+                  </td>
+                  <td style="padding: 15px">
+                    <button>Edit</button>
+                  </td>
+                </tr>
+                <!-- Dummy Data Row 3 -->
+                <tr style="border-bottom: 1px solid #e2e8f0">
+                  <td style="padding: 15px">Jane Smith</td>
+                  <td style="padding: 15px">jane.smith@example.com</td>
+                  <td style="padding: 15px">
+                    <span
+                      style="
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        background: #f0fdf4;
+                        color: #15803d;
+                        font-size: 0.85rem;
+                        font-weight: 600;
+                      "
+                      >Student</span
+                    >
+                  </td>
+                  <td style="padding: 15px">
+                    <button>Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Add User Form -->
+        <div style="flex: 1">
+          <div class="card" style="position: sticky; top: 100px">
+            <h3>Add New User</h3>
+            <form>
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  name="full_name"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Role</label>
+                <select name="role" class="form-control">
+                  <option value="student">Student</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-primary" style="width: 100%">
+                Create User
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

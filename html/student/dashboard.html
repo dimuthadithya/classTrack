@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard - ClassTrack</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container nav-flex">
+        <a href="dashboard.html" class="logo">ClassTrack Student</a>
+        <nav>
+          <a
+            href="dashboard.html"
+            class="btn btn-outline"
+            style="margin-right: 10px"
+            >My Courses</a
+          >
+          <a
+            href="profile.html"
+            class="btn btn-outline"
+            style="margin-right: 10px"
+            >Profile</a
+          >
+          <a href="../login.html" class="btn btn-primary">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px">
+      <h1 class="mb-4">My Courses</h1>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 30px;
+        "
+      >
+        <!-- Dummy Course: Paid -->
+        <div
+          class="card"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          "
+        >
+          <div>
+            <div
+              style="
+                background: #e2e8f0;
+                height: 150px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-book"
+                style="font-size: 3rem; color: #94a3b8"
+              ></i>
+            </div>
+            <h3>Introduction to PHP</h3>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                margin-top: 5px;
+              "
+            >
+              Learn the basics of PHP programming language including variables,
+              loops, and functions.
+            </p>
+          </div>
+
+          <div style="margin-top: 20px">
+            <a
+              href="course.html"
+              class="btn btn-primary"
+              style="width: 100%; text-align: center"
+              >View Course</a
+            >
+          </div>
+        </div>
+
+        <!-- Dummy Course: Pending -->
+        <div
+          class="card"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          "
+        >
+          <div>
+            <div
+              style="
+                background: #e2e8f0;
+                height: 150px;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <i
+                class="fas fa-lock"
+                style="font-size: 3rem; color: #94a3b8"
+              ></i>
+            </div>
+            <h3>Advanced React Patterns</h3>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                margin-top: 5px;
+              "
+            >
+              Master advanced React concepts like HOCs, Render Props, and Custom
+              Hooks.
+            </p>
+          </div>
+
+          <div style="margin-top: 20px">
+            <button
+              class="btn"
+              style="
+                width: 100%;
+                background: #e2e8f0;
+                color: #64748b;
+                cursor: not-allowed;
+              "
+              disabled
+            >
+              <i class="fas fa-lock"></i> Payment Pending
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
