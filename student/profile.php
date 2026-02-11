@@ -16,7 +16,7 @@ $user = $user_result->fetch_assoc();
   <head>
     <meta charset="UTF-8" />
     <title>My Profile - ClassTrack</title>
-    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
