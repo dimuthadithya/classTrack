@@ -2,13 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Manage Users - ClassTrack</title>
+    <title>Manage Users - Tuition Class Management System</title>
     <link rel="stylesheet" href="../../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
       <div class="container nav-flex">
-        <a href="dashboard.html" class="logo">ClassTrack Admin</a>
+        <a href="dashboard.html" class="logo"
+          >Tuition Class Management System Admin</a
+        >
         <nav>
           <a href="dashboard.html" class="btn btn-outline">Back to Dashboard</a>
         </nav>
@@ -52,7 +58,18 @@
                     >
                   </td>
                   <td style="padding: 15px">
-                    <button disabled style="opacity: 0.5">Edit</button>
+                    <button
+                      class="btn"
+                      disabled
+                      style="
+                        opacity: 0.5;
+                        padding: 0.5rem;
+                        background-color: var(--secondary);
+                        color: white;
+                      "
+                    >
+                      <i class="fas fa-user-shield"></i>
+                    </button>
                   </td>
                 </tr>
                 <!-- Dummy Data Row 2 -->
@@ -73,7 +90,30 @@
                     >
                   </td>
                   <td style="padding: 15px">
-                    <button>Edit</button>
+                    <div style="display: flex; gap: 5px">
+                      <button
+                        class="btn"
+                        style="
+                          background-color: var(--primary);
+                          color: white;
+                          padding: 0.5rem 0.8rem;
+                        "
+                        title="Edit"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn"
+                        style="
+                          background-color: var(--danger);
+                          color: white;
+                          padding: 0.5rem 0.8rem;
+                        "
+                        title="Delete"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
                 <!-- Dummy Data Row 3 -->
@@ -94,7 +134,30 @@
                     >
                   </td>
                   <td style="padding: 15px">
-                    <button>Edit</button>
+                    <div style="display: flex; gap: 5px">
+                      <button
+                        class="btn"
+                        style="
+                          background-color: var(--primary);
+                          color: white;
+                          padding: 0.5rem 0.8rem;
+                        "
+                        title="Edit"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn"
+                        style="
+                          background-color: var(--danger);
+                          color: white;
+                          padding: 0.5rem 0.8rem;
+                        "
+                        title="Delete"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -141,8 +204,8 @@
                   <option value="admin">Admin</option>
                 </select>
               </div>
-              <button type="button" class="btn btn-primary" style="width: 100%">
-                Create User
+              <button type="submit" class="btn btn-primary" style="width: 100%">
+                <i class="fas fa-plus-circle"></i> Create User
               </button>
             </form>
           </div>
