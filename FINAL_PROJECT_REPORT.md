@@ -62,22 +62,27 @@ The system is structured by role-specific modules:
 ### 5.2 Tables and Purpose
 
 1. users
+
 - Stores all system users (admin and student).
 - Key fields: email (unique), password, role, full_name.
 
 2. courses
+
 - Represents classes/grades (for example Grade 10 Science).
 - Linked to creator admin through created_by.
 
 3. course_months
+
 - Represents monthly units/modules within a class.
 - Stores month name, year, live class link, and monthly fee.
 
 4. enrollments
+
 - Links students to specific monthly modules.
 - Includes payment_status (pending/paid).
 
 5. resources
+
 - Stores month-level educational content.
 - Resource type supports recording or document.
 
@@ -112,20 +117,25 @@ Unauthorized users are redirected to login.
 ### C. Admin Workflow
 
 1. Dashboard
+
 - Shows counts of students, courses, and enrollments.
 
 2. User Management
+
 - Admin can add users with role selection (student/admin).
 - Lists all users.
 
 3. Class Management
+
 - Admin creates classes/grades.
 - Admin enters class detail page to manage months.
 
 4. Month Management
+
 - Add month per class with year, fee, and optional live link.
 
 5. Month Operations
+
 - Enroll student and mark payment as paid.
 - Add resources (recordings/documents) per month.
 - Update live link per month.
@@ -134,13 +144,16 @@ Unauthorized users are redirected to login.
 ### D. Student Workflow
 
 1. Student Dashboard
+
 - Lists all available classes.
 
 2. Class View
+
 - Shows all months for selected class.
 - Displays lock/unlock state by payment status.
 
 3. Month View
+
 - Access allowed only for paid enrollment.
 - Student can:
   - join live class if live link exists
@@ -148,6 +161,7 @@ Unauthorized users are redirected to login.
   - download/view documents
 
 4. Profile
+
 - Student can update name and optionally password.
 - Email is displayed but not editable.
 
