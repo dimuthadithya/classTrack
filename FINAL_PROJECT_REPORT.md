@@ -1,214 +1,326 @@
 # ClassTrack Final Project Report
 
-## 1. Project Overview
+## 1. INTRODUCTION
 
-ClassTrack is a web-based learning management and tuition tracking system built for campus project use. The system supports two user roles:
+### 1.1 Background
 
-- Admin: manages users, classes, monthly modules, paid enrollments, resources, and live class links.
-- Student: browses classes, views monthly modules, unlocks paid content, joins live classes, and updates profile details.
+Digital education platforms need better tools to manage classes, monthly learning modules, and payment-based access to resources. In many tuition and class scenarios, content distribution, student tracking, and payment verification are handled manually or across disconnected systems.
 
-The project combines backend PHP pages with MySQL data storage and a shared CSS design system. It also includes a static HTML prototype set used for UI mock/demo screens.
+The ClassTrack project was developed to provide a centralized web application where administrators can manage courses and monthly content, while students can access learning materials based on paid enrollment status.
 
-## 2. Project Goals
+### 1.2 Problem Statement
 
-- Provide a simple class and monthly module management platform.
-- Track student payment status per month.
-- Restrict content access based on payment (paid vs locked).
-- Allow admins to upload study resources and recordings.
-- Give students a straightforward dashboard for learning access.
+The primary problem addressed by this project is the lack of a centralized and role-based system for:
 
-## 3. Technology Stack
+- Managing class modules month by month.
+- Tracking student payment status for each month.
+- Restricting educational content until payment is confirmed.
+- Maintaining a simple dashboard for both administrators and students.
 
-- Backend: PHP (procedural pages)
-- Database: MySQL (via PDO)
-- Frontend: HTML + CSS + minimal inline JS
-- Icons: Font Awesome CDN
-- Runtime environment (expected): Apache + PHP + MySQL (for example XAMPP)
+Without such a system, institutions and tutors face inefficiency, poor record keeping, and inconsistent access control for students.
 
-## 4. High-Level Architecture
+### 1.3 Objectives
 
-The system is structured by role-specific modules:
+Primary objectives:
 
-- Public/Auth pages in project root:
-  - index.php (landing page)
-  - login.php (authentication)
-  - logout.php (session termination)
-- Admin module:
-  - admin/dashboard.php
-  - admin/users.php
-  - admin/courses.php
-  - admin/view_course.php
-  - admin/view_month.php
-- Student module:
-  - student/dashboard.php
-  - student/course.php
-  - student/month.php
-  - student/profile.php
-- Shared database connection:
-  - includes/db.php
-- Database definition:
-  - database.sql
-- Shared styling:
-  - css/style.css
-- Static prototype screens:
-  - html/...
+- Build a web-based system for managing courses and monthly modules.
+- Implement role-based access for Admin and Student users.
+- Enable payment-status-based content unlocking.
+- Provide an organized way to upload and access resources (recordings/documents).
 
-## 5. Database Analysis
+Secondary objectives:
 
-### 5.1 Database Name
+- Keep the user interface clean and easy to navigate.
+- Support future feature growth (notifications, stronger security, payment gateway integration).
 
-- class_track
+### 1.4 Scope and Limitations
 
-### 5.2 Tables and Purpose
+Scope of the project:
 
-1. users
+- Full-stack implementation using PHP, MySQL, HTML, and CSS.
+- Admin functionalities: user management, course management, month management, enrollment marking, resource upload, live link updates.
+- Student functionalities: view courses/modules, access paid content, join live classes, update profile.
 
-- Stores all system users (admin and student).
-- Key fields: email (unique), password, role, full_name.
+Limitations of the current version:
 
-2. courses
+- No online payment gateway integration (payment is manually marked by admin).
+- Password handling is basic and can be improved with stronger security practices.
+- Limited advanced analytics/reporting features.
+- Mobile responsiveness exists at a basic level but can be optimized further.
 
-- Represents classes/grades (for example Grade 10 Science).
-- Linked to creator admin through created_by.
+## 2. REQUIREMENTS SPECIFICATION
 
-3. course_months
+### 2.1 Functional Requirements
 
-- Represents monthly units/modules within a class.
-- Stores month name, year, live class link, and monthly fee.
+The system shall:
 
-4. enrollments
+- Allow users to log in using email and password.
+- Redirect users to role-specific dashboards (admin or student).
+- Allow admin to create and manage courses.
+- Allow admin to create monthly modules for each course.
+- Allow admin to enroll students per month and mark payment status as paid.
+- Allow admin to upload month-based resources (recording/document links).
+- Allow admin to update live class links for each month.
+- Allow students to view available courses and monthly modules.
+- Allow students to access month content only when payment status is paid.
+- Allow students to update profile details.
+- Maintain all data in a relational database with proper table relationships.
 
-- Links students to specific monthly modules.
-- Includes payment_status (pending/paid).
+### 2.2 Non-Functional Requirements
 
-5. resources
+Performance:
 
-- Stores month-level educational content.
-- Resource type supports recording or document.
+- The system should load standard pages within a few seconds under normal local-host conditions.
+- Database queries should return expected records with minimal delay for classroom-scale usage.
 
-### 5.3 Relationship Summary
+Usability:
 
-- users (admin) -> courses (created_by)
-- courses -> course_months
-- users (student) + course_months -> enrollments
-- course_months -> resources
+- Interfaces should be simple, readable, and role-focused.
+- Navigation should remain consistent across admin and student pages.
+- Forms should provide straightforward input structure for quick operation.
 
-This creates a tuition-model structure where payment and access are tracked at month level rather than whole course level.
+Security:
 
-## 6. Functional Analysis (A-Z System Flow)
+- Session-based access control should block unauthorized page access.
+- Role checks should prevent students from entering admin pages.
+- Database operations should use prepared statements for most sensitive operations.
+- Input handling and output escaping should reduce injection/XSS risks.
 
-### A. Landing and Login
+Responsiveness:
 
-- index.php presents a marketing-style entry page and login CTA.
-- login.php validates credentials and starts role-based session.
-- After login:
-  - admin -> admin/dashboard.php
-  - student -> student/dashboard.php
+- Layout should remain usable across desktop, tablet, and mobile viewports.
+- Core UI components (cards, buttons, forms) should adapt without breaking structure.
 
-### B. Session and Role Control
+## 3. SYSTEM DESIGN
 
-Every protected admin/student page checks:
+### 3.1 Design Philosophy
 
-- session user existence
-- correct role value
+ClassTrack follows a user-centered and role-driven design approach:
 
-Unauthorized users are redirected to login.
+- Admin workflows are optimized for management tasks and quick updates.
+- Student workflows are optimized for learning access and clarity.
+- The interface uses a reusable visual style (buttons, cards, forms, spacing) for consistency.
+- The architecture separates responsibilities by module (auth, admin, student, shared database layer).
 
-### C. Admin Workflow
+### 3.2 Use Case Diagram
 
-1. Dashboard
+Actors:
 
-- Shows counts of students, courses, and enrollments.
+- Admin
+- Student
 
-2. User Management
+Main use cases:
 
-- Admin can add users with role selection (student/admin).
-- Lists all users.
+- Login/Logout
+- Manage users (Admin)
+- Manage courses (Admin)
+- Manage months (Admin)
+- Enroll and mark payments (Admin)
+- Upload resources (Admin)
+- Update live class links (Admin)
+- View courses/modules (Student)
+- Access paid month resources (Student)
+- Update profile (Student)
 
-3. Class Management
+Diagram placeholder:
 
-- Admin creates classes/grades.
-- Admin enters class detail page to manage months.
+[Insert Use Case Diagram Screenshot Here]
 
-4. Month Management
+### 3.3 Activity Diagram
 
-- Add month per class with year, fee, and optional live link.
+Selected flow: Student accesses a monthly module.
 
-5. Month Operations
+1. Student logs in.
+2. Student selects a course.
+3. Student selects a month.
+4. System checks enrollment and payment status.
+5. If paid, system loads live link and resources.
+6. If not paid, system denies access.
 
-- Enroll student and mark payment as paid.
-- Add resources (recordings/documents) per month.
-- Update live link per month.
-- View list of paid students and resources.
+Diagram placeholder:
 
-### D. Student Workflow
+[Insert Activity Diagram Screenshot Here]
 
-1. Student Dashboard
+### 3.4 Entity-Relationship (ER) Diagram
 
-- Lists all available classes.
+Database entities:
 
-2. Class View
+- users
+- courses
+- course_months
+- enrollments
+- resources
 
-- Shows all months for selected class.
-- Displays lock/unlock state by payment status.
+Key relationships:
 
-3. Month View
+- One admin can create many courses.
+- One course can contain many monthly modules.
+- One student can have many month-level enrollments.
+- One month can contain many resources.
 
-- Access allowed only for paid enrollment.
-- Student can:
-  - join live class if live link exists
-  - watch recordings
-  - download/view documents
+Diagram placeholder:
 
-4. Profile
+[Insert ER Diagram Screenshot Here]
 
-- Student can update name and optionally password.
-- Email is displayed but not editable.
+## 4. WEBSITE DESIGN & INTERFACE
 
-## 7. UI/UX and Frontend Structure
+### 4.1 User Interface Screenshots
 
-- Single shared style file (css/style.css).
-- Consistent layout blocks:
-  - sticky header
-  - card-based content areas
-  - utility classes (container, spacing)
-- Static HTML mirror exists under html folder:
-  - used as prototype/demo version of PHP pages
-  - includes simulated data and demo links
+Home page screenshot placeholder:
 
-## 8. Setup and Execution Guide
+[Insert Home Page Screenshot Here]
 
-### 8.1 Prerequisites
+Resources-related page screenshot placeholder (example: student month view or admin month resource panel):
 
-- PHP runtime
-- MySQL server
-- Apache web server
-- Browser
+[Insert Resources Page Screenshot Here]
 
-### 8.2 Database Setup
+Contact/communication-equivalent screenshot placeholder (example: profile/help or a selected communication page in your implementation):
 
-1. Execute database.sql to create schema.
-2. Ensure credentials in includes/db.php match local environment.
+[Insert Contact/Equivalent Page Screenshot Here]
 
-### 8.3 Run Application
+### 4.2 Color Scheme and Typography
 
-1. Place project in web server root (for example htdocs).
-2. Start Apache and MySQL.
-3. Open index.php or login.php in browser.
-4. Login with a user account stored in users table.
+Primary and secondary colors used in the stylesheet:
 
-## 9. Strengths
+- Primary: #4f46e5
+- Primary Hover: #4338ca
+- Secondary (muted text): #64748b
+- Background: #f8fafc
+- Card Background: #ffffff
+- Main Text: #1e293b
+- Success: #10b981
+- Danger: #ef4444
 
-- Clear separation of admin and student responsibilities.
-- Simple and understandable database model for tuition logic.
-- Payment-gated content flow implemented.
-- Modular file organization by role.
-- Basic responsiveness and clean UI consistency.
+Typography:
 
-## 10. Conclusion
+- Main font family: Inter (Google Fonts), fallback sans-serif.
 
-ClassTrack delivers the core objectives of a campus-level tuition and class management platform with role-based access, monthly payment-gated modules, and resource distribution. The architecture is clear and functionally complete for an academic project demonstration.
+### 4.3 Responsive Design
 
----
+Responsive behavior implemented:
 
-Report prepared from full repository analysis on 2026-04-02.
+- Viewport metadata is used in page layouts.
+- Flexible containers, cards, and grid sections are used for adaptation.
+- Form controls and buttons use percentage/full-width patterns in key views.
+
+Current status note:
+
+- The interface is usable on mobile and tablet, but additional media-query tuning can further improve small-screen spacing and column stacking behavior.
+
+## 5. IMPLEMENTATION DETAILS
+
+### 5.1 Technologies Used
+
+Frontend:
+
+- HTML5
+- CSS3
+- Font Awesome (icon library)
+
+Backend:
+
+- PHP (session handling, role logic, CRUD operations)
+
+Database:
+
+- MySQL (schema and relational constraints)
+- PDO for database connection and query execution
+
+Development tools:
+
+- Visual Studio Code
+- Browser developer tools (for layout/debug checks)
+
+### 5.2 Technical Functionalities
+
+Core implementation details include:
+
+- Session-based authentication and role verification on protected pages.
+- Centralized database connection via PDO.
+- Prepared statements for major create/read/update operations.
+- Enrollment logic that ties access rights to payment status.
+- Month-based resource model separating recordings and documents.
+- Admin controls for live class links and resource management.
+- Student-side content access checks with direct denial for unpaid users.
+- Structured UI components for consistent visual behavior.
+
+## 6. TESTING AND EVALUATION
+
+Testing performed:
+
+- Authentication testing:
+  - Valid and invalid login attempts.
+  - Role-based redirect checks.
+
+- Authorization testing:
+  - Admin-only page blocking for student sessions.
+  - Student-only page blocking for admin sessions.
+
+- Functional testing:
+  - Create users, courses, and months.
+  - Enroll student and mark payment as paid.
+  - Add resources and verify visibility in student month view.
+  - Update student profile details.
+
+- Access-control testing:
+  - Verify unpaid students cannot open month content.
+  - Verify paid students can access resources and live links.
+
+- UI/usability testing:
+  - Navigation clarity and form usability.
+  - Basic checks across desktop and smaller viewports.
+
+Evaluation summary:
+
+- The system meets the primary academic requirements for class/month management and payment-gated content access. Additional refinement in security hardening and advanced responsive optimization is recommended for production-level deployment.
+
+## 7. CONCLUSION
+
+### 7.1 Achievements
+
+Successfully delivered outcomes:
+
+- Built a functional full-stack web application.
+- Implemented complete Admin and Student modules.
+- Designed and integrated a relational database for class tracking.
+- Enforced payment-based month access control.
+- Enabled resource and live-link management by month.
+
+### 7.2 Challenges Faced
+
+Technical and implementation challenges included:
+
+- Designing a clear month-level data relationship for enrollments/resources.
+- Maintaining consistent role checks across multiple pages.
+- Balancing simple UI design with functional completeness.
+- Ensuring reliable access-control logic for paid/unpaid paths.
+
+### 7.3 Future Enhancements
+
+Potential future improvements:
+
+- Integrate secure password hashing and stronger validation.
+- Add online payment gateway support and automated payment verification.
+- Add notifications (email/SMS/in-app) for new resources and class links.
+- Improve mobile responsiveness with expanded media-query rules.
+- Add analytics/reporting dashboards for admin insights.
+- Add audit logs and activity history.
+
+## 8. REFERENCES
+
+Technical documentation and learning resources:
+
+- MDN Web Docs (HTML, CSS, JavaScript, HTTP concepts).
+- PHP Manual (sessions, PDO, form handling).
+- MySQL Documentation (schema design, constraints, SQL syntax).
+- W3Schools (quick syntax reference and examples).
+
+Design and assets:
+
+- Google Fonts (Inter font family).
+- Font Awesome documentation and icon library.
+
+Academic/curriculum resources:
+
+- Module lecture notes and practical guidelines provided during the course.
+- Project proposal and internal course documentation used during planning.
