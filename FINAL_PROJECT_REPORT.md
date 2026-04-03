@@ -38,7 +38,7 @@ Secondary objectives:
 Scope of the project:
 
 - Full-stack implementation using PHP, MySQL, HTML, and CSS.
-- Admin functionalities: user management, course management, month management, enrollment marking, resource upload, live link updates.
+- Admin functionalities: user management (create, edit, delete), course management, month management, enrollment marking, resource upload, live link updates.
 - Student functionalities: view courses/modules, access paid content, join live classes, update profile.
 
 Limitations of the current version:
@@ -56,6 +56,7 @@ The system shall:
 
 - Allow users to log in using email and password.
 - Redirect users to role-specific dashboards (admin or student).
+- Allow admin to create, edit, and delete users.
 - Allow admin to create and manage courses.
 - Allow admin to create monthly modules for each course.
 - Allow admin to enroll students per month and mark payment status as paid.
@@ -195,6 +196,10 @@ Typography:
 
 - Main font family: Inter (Google Fonts), fallback sans-serif.
 
+Currency display standard:
+
+- Fees are displayed in Sri Lankan Rupees (LKR) in both admin and student module views.
+
 ### 4.3 Responsive Design
 
 Responsive behavior implemented:
@@ -238,10 +243,14 @@ Core implementation details include:
 - Session-based authentication and role verification on protected pages.
 - Centralized database connection via PDO.
 - Prepared statements for major create/read/update operations.
+- Admin user CRUD management (create, edit, delete) from a single user-management page.
+- Admin safety controls that prevent deleting the current logged-in user and prevent deleting/demoting the last admin account.
 - Enrollment logic that ties access rights to payment status.
 - Month-based resource model separating recordings and documents.
 - Admin controls for live class links and resource management.
 - Student-side content access checks with direct denial for unpaid users.
+- Currency labels standardized to LKR for monthly fee presentation.
+- Font Awesome icons integrated for action clarity (edit/delete controls).
 - Structured UI components for consistent visual behavior.
 
 ## 6. TESTING AND EVALUATION
@@ -258,9 +267,13 @@ Testing performed:
 
 - Functional testing:
   - Create users, courses, and months.
+  - Edit existing users and validate updated values.
+  - Delete non-critical users and verify removal from list.
+  - Verify safeguards for protected cases (cannot delete self, cannot remove last admin).
   - Enroll student and mark payment as paid.
   - Add resources and verify visibility in student month view.
   - Update student profile details.
+  - Verify monthly fee labels display as LKR in admin and student pages.
 
 - Access-control testing:
   - Verify unpaid students cannot open month content.
@@ -283,8 +296,10 @@ Successfully delivered outcomes:
 - Built a functional full-stack web application.
 - Implemented complete Admin and Student modules.
 - Designed and integrated a relational database for class tracking.
+- Implemented full admin user lifecycle management (create, edit, delete) with account-protection safeguards.
 - Enforced payment-based month access control.
 - Enabled resource and live-link management by month.
+- Standardized fee presentation using LKR currency labels across user-facing fee views.
 
 ### 7.2 Challenges Faced
 
