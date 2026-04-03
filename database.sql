@@ -57,3 +57,9 @@ CREATE TABLE IF NOT EXISTS resources (
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (month_id) REFERENCES course_months(id) ON DELETE CASCADE
 );
+
+-- Default admin account (created on import)
+-- NOTE: Password is plain text because current login logic compares plain text.
+-- Change this password immediately after first login in real deployments.
+INSERT IGNORE INTO users (email, password, role, full_name)
+VALUES ('admin@classtrack', 'admin123', 'admin', 'System Administrator');
