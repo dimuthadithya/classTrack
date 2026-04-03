@@ -32,12 +32,14 @@ $months = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title><?php echo htmlspecialchars($course['title']); ?> - ClassTrack</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <header>
         <div class="container nav-flex">
@@ -50,9 +52,9 @@ $months = $stmt->fetchAll();
 
     <main class="container" style="padding-top: 40px;">
         <h1 class="mb-4"><?php echo htmlspecialchars($course['title']); ?>: Study Modules</h1>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
-            <?php foreach($months as $month): ?>
+            <?php foreach ($months as $month): ?>
                 <div class="card" style="border: 1px solid <?php echo ($month['payment_status'] == 'paid') ? 'var(--success)' : '#e2e8f0'; ?>;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
@@ -61,17 +63,17 @@ $months = $stmt->fetchAll();
                                 <?php echo $month['year']; ?>
                             </span>
                         </div>
-                        <?php if($month['payment_status'] == 'paid'): ?>
+                        <?php if ($month['payment_status'] == 'paid'): ?>
                             <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.5rem;"></i>
                         <?php else: ?>
                             <i class="fas fa-lock" style="color: var(--text-muted); font-size: 1.5rem;"></i>
                         <?php endif; ?>
                     </div>
-                    
-                    <p style="margin: 15px 0; font-weight: bold;">Fee: $<?php echo $month['fee']; ?></p>
+
+                    <p style="margin: 15px 0; font-weight: bold;">Fee: LKR <?php echo number_format((float)$month['fee'], 2); ?></p>
 
                     <div style="margin-top: 10px;">
-                        <?php if($month['payment_status'] == 'paid'): ?>
+                        <?php if ($month['payment_status'] == 'paid'): ?>
                             <a href="month.php?id=<?php echo $month['id']; ?>" class="btn btn-primary" style="width: 100%; text-align: center; background: var(--success);">
                                 Access Content
                             </a>
@@ -86,4 +88,5 @@ $months = $stmt->fetchAll();
         </div>
     </main>
 </body>
+
 </html>

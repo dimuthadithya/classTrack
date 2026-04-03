@@ -37,11 +37,13 @@ $months = $monthStmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Manage <?php echo htmlspecialchars($course['title']); ?> - ClassTrack</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
         <div class="container nav-flex">
@@ -54,8 +56,8 @@ $months = $monthStmt->fetchAll();
 
     <main class="container" style="padding-top: 40px;">
         <h1 class="mb-4"><?php echo htmlspecialchars($course['title']); ?>: Months</h1>
-        
-        <?php if($message): ?>
+
+        <?php if ($message): ?>
             <div style="background: #dcfce7; color: #166534; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <?php echo $message; ?>
             </div>
@@ -65,12 +67,12 @@ $months = $monthStmt->fetchAll();
             <!-- Month List -->
             <div>
                 <div style="display: grid; gap: 20px;">
-                    <?php foreach($months as $month): ?>
+                    <?php foreach ($months as $month): ?>
                         <div class="card">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <h3><?php echo htmlspecialchars($month['name']) . ' ' . $month['year']; ?></h3>
-                                    <p style="color: var(--success); font-weight: bold;">Fee: $<?php echo $month['fee']; ?></p>
+                                    <p style="color: var(--success); font-weight: bold;">Fee: LKR <?php echo number_format((float)$month['fee'], 2); ?></p>
                                 </div>
                                 <a href="view_month.php?id=<?php echo $month['id']; ?>" class="btn btn-primary">Manage Content & Students</a>
                             </div>
@@ -94,7 +96,7 @@ $months = $monthStmt->fetchAll();
                             <input type="number" name="year" class="form-control" value="<?php echo date('Y'); ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Monthly Fee</label>
+                            <label class="form-label">Monthly Fee (LKR)</label>
                             <input type="number" step="0.01" name="fee" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -108,4 +110,5 @@ $months = $monthStmt->fetchAll();
         </div>
     </main>
 </body>
+
 </html>
